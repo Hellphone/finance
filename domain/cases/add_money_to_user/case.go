@@ -2,8 +2,8 @@ package add_money_to_user
 
 import (
 	"errors"
-	"github.com/hellphone/finance/domain/model"
 
+	"github.com/hellphone/finance/domain/model"
 	"github.com/hellphone/finance/domain/repository"
 )
 
@@ -22,7 +22,7 @@ func (r *Request) validate() error {
 	}
 
 	if r.User == nil {
-		return errors.New("Username should not be nil")
+		return errors.New("User should not be nil")
 	}
 
 	return nil
@@ -51,7 +51,6 @@ func Run(r *Request) (*Response, error) {
 		},
 	}
 
-	// TODO: store User after transferring money
 	user, err = r.UserRepository.Store(resp.User)
 	if err != nil {
 		return nil, err

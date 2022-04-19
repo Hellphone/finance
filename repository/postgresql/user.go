@@ -38,6 +38,7 @@ func (r *userRepository) getList(f repository.User, limit, offset int) ([]*model
 	return nil, nil
 }
 
+// TODO: probably save several users at once
 func (r *userRepository) Store(u *model.User) (*model.User, error) {
 	if u.Id != 0 {
 		// update

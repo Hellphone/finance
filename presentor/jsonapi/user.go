@@ -16,10 +16,25 @@ type userResponse struct {
 	Data *User `json:"data"`
 }
 
+type usersResponse struct {
+	Data []*User `json:"data"`
+}
+
 func MarshalUser(user *model.User) ([]byte, error) {
 	data := userResponse{
 		Data: newUserFromModel(user),
 	}
+
+	return json.Marshal(data)
+}
+
+func MarshalUsers(users []*model.User) ([]byte, error) {
+	usersData := make([]*User, len(users))
+	for i, user := range users {
+		usersData[i] = newUserFromModel(user)
+	}
+
+	data := usersResponse{Data: usersData}
 
 	return json.Marshal(data)
 }
