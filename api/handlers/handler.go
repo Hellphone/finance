@@ -8,7 +8,7 @@ import (
 	"github.com/hellphone/finance/api"
 	"github.com/hellphone/finance/domain/cases/add_money_to_user"
 	"github.com/hellphone/finance/domain/model"
-	"github.com/hellphone/finance/presentor/jsonapi"
+	"github.com/hellphone/finance/presenter/jsonapi"
 )
 
 func AddMoneyToUser(ctx *api.Context, r *http.Request) ([]byte, error) {
