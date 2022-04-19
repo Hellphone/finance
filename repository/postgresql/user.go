@@ -3,7 +3,7 @@ package postgresql
 import (
 	"database/sql"
 	"fmt"
-
+	"github.com/hellphone/finance/domain"
 	"github.com/hellphone/finance/domain/model"
 	"github.com/hellphone/finance/domain/repository"
 
@@ -88,6 +88,10 @@ func (r *userRepository) GetOneById(id int) (*model.User, error) {
 		if err != nil {
 			return nil, err
 		}
+	}
+
+	if user.Id == 0 {
+		return nil, domain.NewNotFoundError(fmt.Sprintf("user with ID [%d] not found", id))
 	}
 
 	return user, nil

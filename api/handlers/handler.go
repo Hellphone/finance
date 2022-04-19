@@ -11,15 +11,15 @@ import (
 	"github.com/hellphone/finance/presenter/jsonapi"
 )
 
-func AddMoneyToUser(ctx *api.Context, r *http.Request) ([]byte, error) {
+func AddMoneyToUser(ctx *api.Context, r *http.Request) (int, []byte, error) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		return nil, err
+		return api.BadRequest(err)
 	}
 
 	rb, err := jsonapi.UnmarshalAddMoneyToUser(body)
 	if err != nil {
-		return nil, err
+		return api.DomainError(err)
 	}
 
 	request := &add_money_to_user.Request{
@@ -32,21 +32,26 @@ func AddMoneyToUser(ctx *api.Context, r *http.Request) ([]byte, error) {
 
 	resp, err := add_money_to_user.Run(request)
 	if err != nil {
-		return nil, err
+		return api.DomainError(err)
 	}
 
-	return jsonapi.MarshalUser(resp.User)
+	result, err := jsonapi.MarshalUser(resp.User)
+	if err != nil {
+		return api.DomainError(err)
+	}
+
+	return api.OK(result)
 }
 
-func TransferMoney(ctx *api.Context, r *http.Request) ([]byte, error) {
+func TransferMoney(ctx *api.Context, r *http.Request) (int, []byte, error) {
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
-		return nil, err
+		return api.BadRequest(err)
 	}
 
 	rb, err := jsonapi.UnmarshalTransferMoney(body)
 	if err != nil {
-		return nil, err
+		return api.DomainError(err)
 	}
 
 	request := &transfer_money.Request{
@@ -58,11 +63,16 @@ func TransferMoney(ctx *api.Context, r *http.Request) ([]byte, error) {
 
 	resp, err := transfer_money.Run(request)
 	if err != nil {
-		return nil, err
+		return api.DomainError(err)
 	}
 
-	return jsonapi.MarshalUsers([]*model.User{
+	result, err := jsonapi.MarshalUsers([]*model.User{
 		resp.UserTo,
 		resp.UserFrom,
 	})
+	if err != nil {
+		return api.DomainError(err)
+	}
+
+	return api.OK(result)
 }

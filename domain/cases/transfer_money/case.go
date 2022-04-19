@@ -2,8 +2,6 @@ package transfer_money
 
 import (
 	"errors"
-	"fmt"
-
 	"github.com/hellphone/finance/domain/model"
 	"github.com/hellphone/finance/domain/repository"
 )
@@ -33,8 +31,12 @@ func (r *Request) validate() error {
 		return errors.New("UserToId should not be zero")
 	}
 
+	if r.UserToId == r.UserFromId {
+		return errors.New("user IDs should not be equal")
+	}
+
 	if r.MoneyAmount <= 0 {
-		return errors.New("MoneyAmount should be greater than zero")
+		return errors.New("money_amount should be greater than zero")
 	}
 
 	return nil
@@ -61,9 +63,6 @@ func Run(r *Request) (*Response, error) {
 	}
 
 	moneyToAmount := userTo.MoneyAmount + r.MoneyAmount
-
-	fmt.Println("userFrom:", userFrom)
-	fmt.Println("userTo:", userTo)
 
 	resp := &Response{
 		UserFrom: &model.User{

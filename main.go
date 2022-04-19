@@ -20,9 +20,9 @@ func main() {
 	a.Run()
 }
 
-// TODO: handle errors so that they don't force the application to exit
 // TODO: create migrations
 // TODO: предусмотреть остановку веб-сервера без потери обрабатываемых запросов
+// TODO: write tests (optional)
 
 // TODO: read config from .env file
 func readConfig() (*Config, error) {

@@ -46,6 +46,6 @@ func (a *App) Run() {
 
 	v1.Init(r)
 
-	fmt.Println("server started")
+	log.Println("server started")
 	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%s", a.Port), r))
 }
