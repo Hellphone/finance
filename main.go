@@ -21,6 +21,7 @@ func main() {
 }
 
 // TODO: create migrations
+// TODO: Docker
 // TODO: предусмотреть остановку веб-сервера без потери обрабатываемых запросов
 // TODO: write tests (optional)
 

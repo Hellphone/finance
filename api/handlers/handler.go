@@ -1,12 +1,12 @@
 package handlers
 
 import (
-	"github.com/hellphone/finance/domain/cases/transfer_money"
 	"io/ioutil"
 	"net/http"
 
 	"github.com/hellphone/finance/api"
 	"github.com/hellphone/finance/domain/cases/add_money_to_user"
+	"github.com/hellphone/finance/domain/cases/transfer_money"
 	"github.com/hellphone/finance/domain/model"
 	"github.com/hellphone/finance/presenter/jsonapi"
 )
