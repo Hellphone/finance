@@ -3,13 +3,14 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
+	"net/http"
+
 	"github.com/gorilla/mux"
 	"github.com/hellphone/finance/api"
 	v1 "github.com/hellphone/finance/api/v1"
 	"github.com/hellphone/finance/repository"
 	"github.com/hellphone/finance/repository/postgresql"
-	"log"
-	"net/http"
 )
 
 type App struct {

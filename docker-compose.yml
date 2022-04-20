@@ -1,0 +1,32 @@
+version: "3.7"
+services:
+  postgres:
+    restart: always
+    image: postgres:latest
+    container_name: finance_postgres
+    env_file:
+      - .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+  migrate:
+    image: migrate/migrate
+    depends_on:
+      - postgres
+    volumes:
+      - ./migrations:/database
+    command:
+      [ "-path", "/database", "-database",  "postgres://postgres:asdjk2j@finance_postgres:5432/finance?sslmode=disable", "up" ]
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: finance
+    env_file: .env
+    depends_on:
+      - postgres
+    ports:
+      - "8888:8888"
+volumes:
+  data:

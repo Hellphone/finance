@@ -20,8 +20,6 @@ func main() {
 	a.Run()
 }
 
-// TODO: create migrations
-// TODO: Docker
 // TODO: предусмотреть остановку веб-сервера без потери обрабатываемых запросов
 // TODO: write tests (optional)
 
@@ -35,7 +33,7 @@ func readConfig() (*Config, error) {
 			//DBName:   os.Getenv("DB_NAME"),
 			//Username: os.Getenv("DB_USERNAME"),
 			//Password: os.Getenv("DB_PASSWORD"),
-			Host:     "localhost",
+			Host:     "finance_postgres",
 			Port:     "5342",
 			DBName:   "finance",
 			Username: "postgres",
