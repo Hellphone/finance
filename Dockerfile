@@ -17,6 +17,7 @@ FROM alpine
 EXPOSE 8888
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=builder /go/src/finance/main /app/
+COPY --from=builder /go/src/finance/.env /app/
 RUN apk add --no-cache curl
 WORKDIR /app
 CMD ["./main"]

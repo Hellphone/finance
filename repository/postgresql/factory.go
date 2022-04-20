@@ -15,8 +15,8 @@ type factory struct {
 
 func NewFactory(host, port, dbname, username, password string) (repository.Factory, error) {
 	if username != "" && dbname != "" && password != "" && host != "" && port != "" {
-		connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
-			host, 5432, username, password, dbname)
+		connStr := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
+			host, port, username, password, dbname)
 		db, err := sql.Open("postgres", connStr)
 		if err != nil {
 			return nil, err

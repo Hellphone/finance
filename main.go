@@ -3,6 +3,9 @@ package main
 import (
 	"errors"
 	"log"
+	"os"
+
+	"github.com/joho/godotenv"
 )
 
 func main() {
@@ -23,30 +26,45 @@ func main() {
 // TODO: предусмотреть остановку веб-сервера без потери обрабатываемых запросов
 // TODO: write tests (optional)
 
-// TODO: read config from .env file
 func readConfig() (*Config, error) {
+	err := godotenv.Load(".env")
+	if err != nil {
+		return nil, err
+	}
+
 	cfg := &Config{
-		Port: "8888",
+		Port: os.Getenv("PORT"),
 		DB: &DBConfig{
-			//Host:     os.Getenv("DB_HOST"),
-			//Port:     os.Getenv("DB_PORT"),
-			//DBName:   os.Getenv("DB_NAME"),
-			//Username: os.Getenv("DB_USERNAME"),
-			//Password: os.Getenv("DB_PASSWORD"),
-			Host:     "finance_postgres",
-			Port:     "5342",
-			DBName:   "finance",
-			Username: "postgres",
-			Password: "asdjk2j",
+			Host:     os.Getenv("POSTGRES_HOST"),
+			Port:     os.Getenv("POSTGRES_PORT"),
+			DBName:   os.Getenv("POSTGRES_DB"),
+			Username: os.Getenv("POSTGRES_USER"),
+			Password: os.Getenv("POSTGRES_PASSWORD"),
 		},
 	}
 
+	if cfg.Port == "" {
+		cfg.Port = "8888"
+	}
+
 	if cfg.DB.Host == "" {
-		return nil, errors.New("unexpected DB_HOST' env variable")
+		return nil, errors.New("unexpected POSTGRES_HOST' env variable")
 	}
 
 	if cfg.DB.DBName == "" {
-		return nil, errors.New("unexpected DB_NAME env variable")
+		return nil, errors.New("unexpected POSTGRES_NAME env variable")
+	}
+
+	if cfg.DB.Username == "" {
+		return nil, errors.New("unexpected POSTGRES_USER env variable")
+	}
+
+	if cfg.DB.Password == "" {
+		return nil, errors.New("unexpected POSTGRES_PASSWORD env variable")
+	}
+
+	if cfg.DB.Port == "" {
+		cfg.DB.Port = "5432"
 	}
 
 	return cfg, nil

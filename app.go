@@ -19,7 +19,6 @@ type App struct {
 }
 
 func (a *App) Init(cfg *Config) error {
-
 	a.Port = cfg.Port
 
 	factory, err := postgresql.NewFactory(cfg.DB.Host, cfg.DB.Port, cfg.DB.DBName, cfg.DB.Username, cfg.DB.Password)
