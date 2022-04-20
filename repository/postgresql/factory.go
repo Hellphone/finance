@@ -29,7 +29,7 @@ func NewFactory(host, port, dbname, username, password string) (repository.Facto
 			db: db,
 		}, nil
 	}
-	return nil, errors.New("Mongo credentials is empty")
+	return nil, errors.New("Postgresql credentials are empty")
 }
 
 func (f *factory) UserRepository() domainRepository.User {
