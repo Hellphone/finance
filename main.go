@@ -2,8 +2,11 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"log"
 	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/joho/godotenv"
 )
@@ -21,9 +24,14 @@ func main() {
 	}
 
 	a.Run()
+
+	signals := make(chan os.Signal, 1)
+	signal.Notify(signals, syscall.SIGINT, syscall.SIGTERM)
+	<-signals
+
+	fmt.Println("server stopped")
 }
 
-// TODO: предусмотреть остановку веб-сервера без потери обрабатываемых запросов
 // TODO: write tests (optional)
 
 func readConfig() (*Config, error) {
