@@ -44,7 +44,7 @@ func readConfig() (*Config, error) {
 	}
 
 	if cfg.Port == "" {
-		cfg.Port = "8888"
+		cfg.Port = defaultServerPort
 	}
 
 	if cfg.DB.Host == "" {
@@ -64,7 +64,7 @@ func readConfig() (*Config, error) {
 	}
 
 	if cfg.DB.Port == "" {
-		cfg.DB.Port = "5432"
+		cfg.DB.Port = defaultPostgresqlPort
 	}
 
 	return cfg, nil

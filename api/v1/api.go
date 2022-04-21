@@ -1,10 +1,11 @@
 package v1
 
 import (
+	"net/http"
+
 	"github.com/gorilla/mux"
 	"github.com/hellphone/finance/api"
 	"github.com/hellphone/finance/api/handlers"
-	"net/http"
 )
 
 func Init(r *mux.Router) {

@@ -1,5 +1,10 @@
 package main
 
+const (
+	defaultServerPort     = "8888"
+	defaultPostgresqlPort = "5432"
+)
+
 type Config struct {
 	Port string
 	DB   *DBConfig
