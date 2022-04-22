@@ -15,7 +15,7 @@ services:
     depends_on:
       - postgres
     volumes:
-      - ./migrations:/database
+      - ./db/migrations:/database
     command:
       [ "-path", "/database", "-database",  "postgres://postgres:asdjk2j@finance_postgres:5432/finance?sslmode=disable", "up" ]
   server:
