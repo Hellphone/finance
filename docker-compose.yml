@@ -27,6 +27,6 @@ services:
     depends_on:
       - postgres
     ports:
-      - "8888:8888"
+      - "1234:1234"
 volumes:
   data:

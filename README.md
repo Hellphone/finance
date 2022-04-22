@@ -24,7 +24,7 @@ To run this project, just run the following command:
 ### add_money_to_user
 Request:
 ```
-POST localhost:8888/api/v1/add_money_to_user
+POST localhost:1234/api/v1/add_money_to_user
 
 {
   "user_id": 1,
@@ -47,7 +47,7 @@ Response:
 ### transfer_money
 Request:
 ```
-POST localhost:8888/api/v1/transfer_money
+POST localhost:1234/api/v1/transfer_money
 
 {
   "user_from_id": 1,

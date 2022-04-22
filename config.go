@@ -1,7 +1,7 @@
 package main
 
 const (
-	defaultServerPort     = "8888"
+	defaultServerPort     = "1234"
 	defaultPostgresqlPort = "5432"
 )
 
